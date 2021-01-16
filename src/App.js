@@ -1,7 +1,12 @@
 import React from 'react';
 import './style.scss';
+import Calculator from './Calculator';
 const App = () => {
-  return <h1 className="superBlow">this is from app</h1>;
+  return (
+    <div className="background">
+      <Calculator />
+    </div>
+  );
 };
 
 export default App;

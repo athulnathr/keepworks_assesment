@@ -1,5 +1,129 @@
-.superBlow{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Baloo Chettan 2', cursive;
+  transition: all ease 0.8s;
 }
+.background {
+  background: #f0f0f0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Grid */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* height: 100vh; */
+}
+
+.calc-container {
+  display: grid;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+// .dot {
+//   grid-column: span 2;
+// }
+
+// .equal {
+//   grid-row: span 2;
+// }
+
+#buttons-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  text-align: center;
+}
+#operators {
+  display: grid;
+}
+.keypad-container {
+  display: flex;
+}
+/* Input */
+#input {
+  font-size: 3em;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #fdfefe;
+  background-color: #223850;
+  transition: all 0.3s ease-in;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Btn's */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  &.btn-num {
+    background-color: #223850;
+    color: #6885a7;
+    &:hover {
+      background-color: #233b55;
+    }
+  }
+  &.btn-operator {
+    font-weight: bold;
+    background-color: #233b55;
+    color: #fdfefe;
+    &:hover {
+      background-color: rgb(27, 47, 68) !important;
+    }
+  }
+}
+
+// #color-change {
+//   position: fixed;
+//   border-radius: 50%;
+//   bottom: 0;
+//   right: 0;
+//   font-size: 1em;
+//   margin: 1em;
+//   transition: all 0.3s ease-in;
+//   background-color: #223850;
+//   color: #fdfefe;
+// }
+
+// #color-change:hover {
+//   background-color: #fdfefe !important;
+//   color: #233b55 !important;
+//   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+// }
+
+// /* Color Modes */
+// .white-bg {
+//   background-color: #fdfefe !important;
+// }
+// .white-text {
+//   color: #fdfefe !important;
+// }
+// .blue-bg {
+//   background-color: #223850 !important;
+// }
+// .blue-text {
+//   color: #223850 !important;
+// }
+
+// /* Queries */
+// @media screen and (max-width: 601px) {
+//   #color-change {
+//     position: relative;
+//     width: 25px;
+//     height: 25px;
+//     margin: 0 auto 1em auto;
+//   }
+// }
