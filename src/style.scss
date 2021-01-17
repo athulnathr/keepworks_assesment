@@ -35,19 +35,19 @@ body {
 //   grid-row: span 2;
 // }
 
-#buttons-container {
+.digits {
   display: grid;
   grid-template-columns: repeat(3, auto);
   text-align: center;
 }
-#operators {
+.operators {
   display: grid;
 }
-.keypad-container {
+.keypad {
   display: flex;
 }
 /* Input */
-#input {
+.billboard {
   font-size: 3em;
   text-align: right;
   display: flex;
@@ -57,6 +57,7 @@ body {
   background-color: #223850;
   transition: all 0.3s ease-in;
   padding: 0.5rem 0.75rem;
+  min-height: 4.5rem;
 }
 
 /* Btn's */
@@ -67,15 +68,16 @@ body {
   padding: 2rem;
   font-size: 1.5em;
   cursor: pointer;
+  border: none;
   transition: all 0.3s ease-in;
-  &.btn-num {
+  &.number {
     background-color: #223850;
     color: #6885a7;
     &:hover {
       background-color: #233b55;
     }
   }
-  &.btn-operator {
+  &.operator {
     font-weight: bold;
     background-color: #233b55;
     color: #fdfefe;

@@ -1,42 +1,37 @@
 import React from 'react';
-
+import Key from './Key';
+import useCalculator from './Engine';
 const Calculator = () => {
+  const [result, handleOperation] = useCalculator();
   return (
     <div className="main-container">
       <div className="calc-container">
-        <div id="input">100</div>
-        <div className="keypad-container">
-          <div id="buttons-container">
-            <div className="btn btn-num">1</div>
-            <div className="btn btn-num">2</div>
-            <div className="btn btn-num">3</div>
-            <div className="btn btn-num">4</div>
-            <div className="btn btn-num">5</div>
-            <div className="btn btn-num">6</div>
-            <div className="btn btn-num">7</div>
-            <div className="btn btn-num">8</div>
-            <div className="btn btn-num">9</div>
-            <div className="btn btn-operator">
-              <i className="far fa-trash-alt"></i>
-            </div>
-            <div className="btn btn-num dot">0</div>
-            <div className="btn btn-operator equal">
-              <i className="fas fa-equals"></i>
-            </div>
+        <div className="billboard">{result}</div>
+        <div className="keypad">
+          <div className="digits">
+            <Key value={1} onClick={handleOperation} />
+            <Key value={2} onClick={handleOperation} />
+            <Key value={3} onClick={handleOperation} />
+            <Key value={4} onClick={handleOperation} />
+            <Key value={5} onClick={handleOperation} />
+            <Key value={6} onClick={handleOperation} />
+            <Key value={7} onClick={handleOperation} />
+            <Key value={8} onClick={handleOperation} />
+            <Key value={9} onClick={handleOperation} />
+            <Key value="C" type={'operator'} onClick={handleOperation} />
+            <Key value={'.'} className="dot" onClick={handleOperation} />
+            <Key
+              value="="
+              type={'operator'}
+              className="equal"
+              onClick={handleOperation}
+            />
           </div>
-          <div id="operators">
-            <div className="btn btn-operator">
-              <i className="fas fa-plus"></i>
-            </div>
-            <div className="btn btn-operator">
-              <i className="fas fa-minus"></i>
-            </div>
-            <div className="btn btn-operator">
-              <i className="fas fa-times"></i>
-            </div>
-            <div className="btn btn-operator">
-              <i className="fas fa-divide"></i>
-            </div>
+          <div className="operators">
+            <Key value="+" type={'operator'} onClick={handleOperation} />
+            <Key value="-" type={'operator'} onClick={handleOperation} />
+            <Key value="X" type={'operator'} onClick={handleOperation} />
+            <Key value="/" type={'operator'} onClick={handleOperation} />
           </div>
         </div>
       </div>
