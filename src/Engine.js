@@ -1,73 +1,69 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
 const CalculatorOperations = {
-  '/': (firstValue, secondValue) => firstValue / secondValue,
-  X: (firstValue, secondValue) => firstValue * secondValue,
-  '+': (firstValue, secondValue) => firstValue + secondValue,
-  '-': (firstValue, secondValue) => firstValue - secondValue,
-  '=': (_, secondValue) => secondValue
+  '/': (prevValue, nextValue) => prevValue / nextValue,
+  '*': (prevValue, nextValue) => prevValue * nextValue,
+  '+': (prevValue, nextValue) => prevValue + nextValue,
+  '-': (prevValue, nextValue) => prevValue - nextValue,
+  '=': (_, nextValue) => nextValue,
+  C: () => 0
 };
 
 const useCalculator = () => {
-  const [prevValue, setPrevValue] = useState(null);
-  const [nextValue, setNextValue] = useState('0');
-  const [op, setOp] = useState(null);
+  const [value, setValue] = useState(null);
+  const [displayValue, setDisplayValue] = useState('0');
+  const [operator, setOperator] = useState(null);
+  const waitingForOperand = useRef(false);
 
-  const handleNum = (number) => {
-    setNextValue(nextValue === '0' ? String(number) : nextValue + number);
-  };
-  const insertDot = () => {
-    if (!/\./.test(nextValue)) {
-      setNextValue(nextValue + '.');
-    }
-  };
-  // const percentage = () => {
-  //   setNextValue(parseFloat(nextValue) / 100);
-  //   if (prevValue && nextValue === '') {
-  //     setPrevValue(parseFloat(prevValue) / 100);
-  //   }
-  // };
-  const changeSign = () => {
-    setNextValue(parseFloat(nextValue) * -1);
-  };
-  const clearData = () => {
-    setNextValue('0');
-    setPrevValue(0);
-  };
-  const performOperation = () => {
-    let temp = CalculatorOperations[op](
-      parseFloat(prevValue),
-      parseFloat(nextValue)
-    );
-    setOp(null);
-    setNextValue(String(temp));
-    setPrevValue(null);
-  };
-
-  const handleOperation = (input) => {
-    if (Number.isInteger(input)) {
-      handleNum(parseInt(input, 10));
-    } else if (input in CalculatorOperations) {
-      if (op === null) {
-        setOp(input);
-        setPrevValue(nextValue);
-        setNextValue('');
-      }
-      if (op) {
-        setOp(input);
-      }
-      if (prevValue && op && nextValue) {
-        performOperation();
-      }
-    } else if (input === 'C') {
-      clearData();
-    } else if (input === '\xB1') {
-      changeSign();
-    } else if (input === '.') {
-      insertDot();
+  const inputDigit = (digit) => {
+    if (waitingForOperand.current) {
+      setDisplayValue(String(digit));
+      waitingForOperand.current = false;
+    } else {
+      setDisplayValue(
+        displayValue === '0' ? String(digit) : displayValue + digit
+      );
     }
   };
 
-  return [nextValue, handleOperation];
+  const clearAll = () => {
+    setValue(null);
+    setDisplayValue('0');
+    setOperator(null);
+    waitingForOperand.current === false;
+  };
+
+  const performOperation = (nextOperator) => {
+    if (!waitingForOperand.current) {
+      const inputValue = parseFloat(displayValue);
+      if (value == null) {
+        setValue(inputValue);
+      } else if (operator) {
+        const currentValue = value || 0;
+        const newValue = CalculatorOperations[operator](
+          currentValue,
+          inputValue
+        );
+        setValue(newValue);
+        setDisplayValue(String(newValue));
+      }
+      waitingForOperand.current = true;
+      setOperator(nextOperator);
+    }
+  };
+
+  const handleInput = (value, type) => {
+    if (type === 'number') {
+      inputDigit(value);
+    } else if (type === 'operator') {
+      performOperation(value);
+      if (value === 'C') {
+        clearAll();
+      }
+    }
+  };
+
+  return [displayValue, handleInput];
 };
 
 export default useCalculator;
