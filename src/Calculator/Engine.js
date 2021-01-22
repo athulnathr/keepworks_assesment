@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
+import { BUTTON_TEXTS, BUTTON_TYPES } from './constants';
 
-const CalculatorOperations = {
-  '/': (prevValue, nextValue) => prevValue / nextValue,
-  '*': (prevValue, nextValue) => prevValue * nextValue,
-  '+': (prevValue, nextValue) => prevValue + nextValue,
-  '-': (prevValue, nextValue) => prevValue - nextValue,
-  '=': (_, nextValue) => nextValue,
-  C: () => 0
+const LogicUnit = {
+  [BUTTON_TEXTS.DIVIDE]: (prevValue, nextValue) => prevValue / nextValue,
+  [BUTTON_TEXTS.MULTIPLY]: (prevValue, nextValue) => prevValue * nextValue,
+  [BUTTON_TEXTS.ADD]: (prevValue, nextValue) => prevValue + nextValue,
+  [BUTTON_TEXTS.SUBTRACT]: (prevValue, nextValue) => prevValue - nextValue,
+  [BUTTON_TEXTS.EQUALS]: (_, nextValue) => nextValue,
+  [BUTTON_TEXTS.CLEAR]: () => 0
 };
 
 const useCalculator = () => {
@@ -40,10 +41,7 @@ const useCalculator = () => {
         setValue(inputValue);
       } else if (operator) {
         const currentValue = value || 0;
-        const newValue = CalculatorOperations[operator](
-          currentValue,
-          inputValue
-        );
+        const newValue = LogicUnit[operator](currentValue, inputValue);
         setValue(newValue);
         setDisplayValue(String(newValue));
       }
@@ -53,11 +51,11 @@ const useCalculator = () => {
   };
 
   const handleInput = (value, type) => {
-    if (type === 'number') {
+    if (type === BUTTON_TYPES.NUMBER) {
       inputDigit(value);
-    } else if (type === 'operator') {
+    } else if (type === BUTTON_TYPES.OPERATOR) {
       performOperation(value);
-      if (value === 'C') {
+      if (value === BUTTON_TEXTS.CLEAR) {
         clearAll();
       }
     }

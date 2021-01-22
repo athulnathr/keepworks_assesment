@@ -1,13 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import Calculator from './Calculator';
-const App = () => {
-  return (
-    <div className="background">
-      <Calculator />
-    </div>
-  );
-};
+import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
