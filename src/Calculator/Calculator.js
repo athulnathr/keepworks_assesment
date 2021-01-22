@@ -1,6 +1,7 @@
 import React from 'react';
 import Key from './Key';
 import useCalculator from './Engine';
+import './style.scss';
 const Calculator = () => {
   const [result, handleOperation] = useCalculator();
   return (

@@ -1,12 +1,3 @@
-import React from 'react';
-import './style.scss';
-import Calculator from './Calculator';
-const App = () => {
-  return (
-    <div className="background">
-      <Calculator />
-    </div>
-  );
-};
+// import React from 'react';
 
-export default App;
+// export default App;
