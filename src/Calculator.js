@@ -19,13 +19,8 @@ const Calculator = () => {
             <Key value={8} onClick={handleOperation} />
             <Key value={9} onClick={handleOperation} />
             <Key value="C" type={'operator'} onClick={handleOperation} />
-            <Key value={'.'} className="dot" onClick={handleOperation} />
-            <Key
-              value="="
-              type={'operator'}
-              className="equal"
-              onClick={handleOperation}
-            />
+            <Key value={0} onClick={handleOperation} />
+            <Key value="=" type={'operator'} onClick={handleOperation} />
           </div>
           <div className="operators">
             <Key value="+" type={'operator'} onClick={handleOperation} />
