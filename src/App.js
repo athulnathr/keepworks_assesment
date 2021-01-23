@@ -1,7 +1,13 @@
 import React from 'react';
-import './style.scss';
+import Calculator from './Calculator';
+import ThemeSwitch from './components/ThemeSwitch';
+import './styles/main.scss';
 const App = () => {
-  return <h1 className="superBlow">this is from app</h1>;
+  return (
+    <div className="light" id="viewport">
+      <ThemeSwitch />
+      <Calculator />
+    </div>
+  );
 };
-
 export default App;

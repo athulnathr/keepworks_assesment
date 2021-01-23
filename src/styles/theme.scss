@@ -1,0 +1,17 @@
+.light {
+  --theme-page-background: #fff;
+  --theme-page-button: #f0f0f0;
+  --theme-page-button-hover: #d7d5d5;
+  --theme-text-color: #000;
+  --theme-operator-button: #bababa;
+  --theme-operator-button-hover: #949494;
+}
+
+.dark {
+  --theme-page-background: #000;
+  --theme-page-button: #666;
+  --theme-page-button-hover: #f0f0f0;
+  --theme-text-color: #fff;
+  --theme-operator-button: #545454;
+  --theme-operator-button-hover: #525252;
+}
