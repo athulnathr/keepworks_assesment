@@ -3,7 +3,6 @@ import Key from './Key';
 import useCalculator from './Engine';
 import './style.scss';
 import { BUTTON_TEXTS, BUTTON_TYPES } from './constants';
-
 const Calculator = () => {
   const [result, handleOperation] = useCalculator();
 
