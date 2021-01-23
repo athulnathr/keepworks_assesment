@@ -14,10 +14,20 @@ export const BUTTON_TEXTS = {
   ADD: '+',
   SUBTRACT: '-',
   MULTIPLY: '*',
-  DIVIDE: '/'
+  DIVIDE: '/',
+  SIGN: '±',
+  ROOT: '√',
+  SQURE: 'x²',
+  SCI: 'sci'
 };
 
 export const BUTTON_TYPES = {
   NUMBER: 'number',
   OPERATOR: 'operator'
 };
+
+export const SCIENTIFIC_BUTTONS = [
+  BUTTON_TEXTS.SIGN,
+  BUTTON_TEXTS.ROOT,
+  BUTTON_TEXTS.SQURE
+];

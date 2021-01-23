@@ -87,6 +87,12 @@ body {
   }
 }
 
+.scientific_buttons {
+  display: none;
+  &.visible {
+    display: flex;
+  }
+}
 // #color-change {
 //   position: fixed;
 //   border-radius: 50%;
